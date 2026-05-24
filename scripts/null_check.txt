@@ -1,0 +1,2 @@
+Column with most nulls: Colors Reported
+Rows removed due to missing data: 65034

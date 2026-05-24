@@ -1,0 +1,1 @@
+I discovered that the word 'far' is considered a stop-word.
