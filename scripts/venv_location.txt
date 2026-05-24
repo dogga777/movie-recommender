@@ -1,0 +1,3 @@
+--- Environment Security Check ---
+STATUS: SUCCESS
+Your project is safely isolated in: C:\Users\chand\OneDrive\Desktop\movie-recommender\.venv\Scripts\python.exe

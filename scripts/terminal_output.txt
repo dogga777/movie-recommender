@@ -1,0 +1,10 @@
+Directory: C:\Users\chan
+    d\OneDrive\Desktop\movie
+    -recommender
+
+
+Mode           LastWriteTime
+----           -------------
+d-----  24-05-2026     12:02
+d-----  24-05-2026     12:18
+-a----  24-05-2026     11:52

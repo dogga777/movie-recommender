@@ -1,0 +1,5 @@
+--- Dataset Arrival Check ---
+[FOUND] File: data/movies_5000.csv
+[SIZE] 2.86 MB
+[SUCCESS] Dataset looks healthy and ready for processing!
+------------------------------
