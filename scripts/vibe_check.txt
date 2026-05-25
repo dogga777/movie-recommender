@@ -1,0 +1,4 @@
+New score_partial: <your value>
+
+Observation:
+The movie became more similar to Pure Action because comedy reduced.

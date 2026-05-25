@@ -1,0 +1,2 @@
+My matrix contains 23068809 similarity scores.
+This grid represents every possible connection between my movies.
