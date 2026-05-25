@@ -1,5 +1,5 @@
 # Create a list of movie genres
-genres = ["Action", "Sci-Fi", "Comedy", "Drama"]
+genres = ["Action", "Sci-Fi", "Comedy", "Drama", "Horror"]
 
 # Function to validate genres
 def validate_genre(user_input):
