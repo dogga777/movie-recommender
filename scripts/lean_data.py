@@ -1,21 +1,13 @@
 import pandas as pd
 
-file_path = "data/movies_5000.csv"
-df = pd.read_csv(file_path)
+df = pd.read_csv("data/tmdb_5000_movies.csv")
 
-print("--- DIAGNOSTIC CHECK ---")
-print("Columns:", df.columns)
+print("Before:", len(df.columns))
 
-df_lean = df[['City', 'State', 'Shape Reported']]
+df_lean = df[['id', 'title', 'overview', 'genres', 'keywords']]
 
-print("\n--- Data Slimming Operation ---")
-print(f"Columns before: {len(df.columns)}")
-print(f"Columns after: {len(df_lean.columns)}")
+print("After:", len(df_lean.columns))
 
 print(df_lean.head())
 
-original_memory = df.memory_usage().sum() / 1024
-lean_memory = df_lean.memory_usage().sum() / 1024
-
-print("\nMemory Before:", original_memory)
-print("Memory After:", lean_memory)
+print("Memory:", df.memory_usage().sum() / 1024, "KB")

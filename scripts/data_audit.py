@@ -1,44 +1,30 @@
 import pandas as pd
 import os
 
-file_path = "data/movies_5000.csv"
+file_path = "data/tmdb_5000_movies.csv"
 
-def run_data_audit():
-    print("📋 STARTING DATA AUDIT CHECKPOINT...")
-    print("-" * 40)
+def run_audit():
+    print("DATA AUDIT START\n")
 
-    # CHECK 1: File existence
     if not os.path.exists(file_path):
-        print("❌ FAILED: 'movies_5000.csv' not found in data folder.")
+        print("FILE NOT FOUND")
         return
-    else:
-        print("✅ PASS: Dataset file detected.")
 
-    # Load dataset
     df = pd.read_csv(file_path)
 
-    # CHECK 2: Missing values in overview
-    if "overview" in df.columns:
-        null_count = df["overview"].isnull().sum()
-        if null_count == 0:
-            print("✅ PASS: No missing values in 'overview'.")
-        else:
-            print(f"⚠️ WARNING: {null_count} missing overviews.")
+    print("Columns:", df.columns)
+
+    required = ['id', 'title', 'overview', 'genres', 'keywords']
+    missing = [col for col in required if col not in df.columns]
+
+    if not missing:
+        print("ALL REQUIRED COLUMNS PRESENT")
     else:
-        print("❌ FAILED: 'overview' column not found.")
+        print("Missing:", missing)
 
-    # CHECK 3: Required columns
-    required_cols = ['id', 'title', 'genres', 'overview', 'keywords']
-    found_cols = [col for col in required_cols if col in df.columns]
+    nulls = df['overview'].isnull().sum()
+    print("Missing overviews:", nulls)
 
-    if len(found_cols) == len(required_cols):
-        print("✅ PASS: All critical feature columns are present.")
-    else:
-        missing = set(required_cols) - set(found_cols)
-        print(f"❌ FAILED: Missing columns: {missing}")
+    print("\nAUDIT COMPLETE")
 
-    print("-" * 40)
-    print("AUDIT COMPLETE: Your data is ready for Module 3!")
-
-if __name__ == "__main__":
-    run_data_audit()
+run_audit()

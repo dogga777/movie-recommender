@@ -1,0 +1,8 @@
+--- Distance vs Similarity ---
+A vs B - Euclidean Distance: 5.66
+A vs B - Cosine Similarity: 1.00
+
+A vs C - Euclidean Distance: 0.10
+A vs C - Cosine Similarity: 1.00
+
+Conclusion: Cosine Similarity focuses on direction, not size.
