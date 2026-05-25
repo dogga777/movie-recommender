@@ -1,0 +1,14 @@
+✨ Cleaned the overview column!
+✨ Cleaned the tagline column!
+✨ Cleaned the homepage column!
+✨ Cleaned the original_language column!
+
+--- Cleaning Complete ---
+                                      title  ... original_language
+0                                    Avatar  ...                en
+1  Pirates of the Caribbean: At World's End  ...                en
+2                                   Spectre  ...                en
+3                     The Dark Knight Rises  ...                en
+4                               John Carter  ...                en
+
+[5 rows x 4 columns]
