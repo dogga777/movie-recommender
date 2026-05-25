@@ -1,0 +1,3 @@
+d0f0bce Add staging proof text file
+f9aaca7 Update math logic in staging demo
+fe68dd2 Refactor cleaning logic to follow DRY principle
