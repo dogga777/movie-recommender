@@ -1,0 +1,2 @@
+Original: [{"id": 28, "name": "Action"}, {"id": 12, "name": "Adventure"}, {"id": 14, "name": "Fantasy"}]
+Unpacked: ['Action', 'Adventure', 'Fantasy']
