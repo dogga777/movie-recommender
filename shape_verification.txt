@@ -1,0 +1,1 @@
+I have confirmed the matrix is a square grid of 4803 by 4803 elements.
