@@ -1,0 +1,7 @@
+Before Unwrapping: <class 'str'>
+After Unwrapping: <class 'list'>
+First Genre Found: Action
+Found Genre: Action
+Found Genre: Adventure
+
+Second Keyword: marvel
