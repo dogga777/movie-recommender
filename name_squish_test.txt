@@ -1,0 +1,5 @@
+Original Director: ['Christopher Nolan']
+Squished Director: ['ChristopherNolan']
+
+✅ Success: The 'Tom' confusion has been prevented!
+✅ Director name cleaned successfully!
