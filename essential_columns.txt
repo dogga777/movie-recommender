@@ -1,0 +1,7 @@
+Initial columns: 20
+Columns after dropping dead weight: 5
+
+--- Essential Columns Remaining ---
+['genres', 'id', 'keywords', 'overview', 'title']
+
+I kept the overview column because it contains the movie story and description, which helps the recommendation engine understand movie content and find similar movies.
