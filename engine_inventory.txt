@@ -1,0 +1,4 @@
+movies_list.pkl size: 5 MB
+similarity.pkl size: 180 MB
+
+I confirmed that neither file is 0 KB.
