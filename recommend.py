@@ -1,59 +1,39 @@
-# Import the necessary libraries
-import pickle
-import pandas as pd
+# Import the tools we need
+import pickle # Used for loading our serialized files
+import pandas as pd # Used for data manipulation
 
-# Function to load our pre-calculated brain
+# Function to load our pre-calculated data
 def load_assets():
-
-    # Load the movie list dataframe
+    # Load the movie list from the models folder
     with open('models/movies_list.pkl', 'rb') as f:
         movies = pickle.load(f)
-
     # Load the similarity scores matrix
     with open('models/similarity.pkl', 'rb') as f:
         sim = pickle.load(f)
-
+    # Return both assets to the caller
     return movies, sim
 
-
-# The core recommendation engine function
+# Function to generate recommendations
 def get_recommendations(movie_name, movies_df, sim_matrix):
+    # --- SET BREAKPOINT HERE ---
+    # We want to see how we arrived at this specific line of logic
+    idx = movies_df[movies_df['title'] == movie_name].index[0]
+    
+    # Calculate similarity row
+    distances = sim_matrix[idx]
+    
+    # Sort and slice top 5
+    sorted_list = sorted(list(enumerate(distances)), reverse=True, key=lambda x: x[1])[1:6]
+    
+    # Print results to terminal
+    for i in sorted_list:
+        print(f"🎬 {movies_df.iloc[i[0]].title}")
 
-    try:
-        # Step 1: Find movie index
-        idx = movies_df[movies_df['title'] == movie_name].index[0]
-
-        # Step 2: Enumerate similarity scores
-        score_series = list(enumerate(sim_matrix[idx]))
-
-        # Step 3: Sort scores
-        sorted_scores = sorted(
-            score_series,
-            reverse=True,
-            key=lambda x: x[1]
-        )
-
-        # Step 4: Get top 5 matches
-        top_matches = sorted_scores[1:6]
-
-        # Step 5: Display recommendations
-        print(f"\n🎬 Recommendations for '{movie_name}':")
-        print("-" * 40)
-
-        for match in top_matches:
-            print(f"✨ {movies_df.iloc[match[0]].title}")
-
-        print("-" * 40)
-
-    except IndexError:
-        print(f"\n❌ Error: '{movie_name}' not found.")
-
-
-# MAIN PROGRAM
+# The 'Entry Point' of our script
 if __name__ == "__main__":
-
-    # Load assets
+    # First, we call the loader
     m_list, s_matrix = load_assets()
-
-    # Test recommendation
-    get_recommendations("The Dark Knight", m_list, s_matrix)
+    
+    # Next, we call the engine
+    # This is the 'Parent' call that starts the stack for the engine
+    get_recommendations("Avatar", m_list, s_matrix)
