@@ -1,48 +1,77 @@
+"""
+Movie Recommendation Engine - Final Polished Version
+Goal: Content-based filtering using Cosine Similarity.
+"""
+
 import pickle
 
-# Optimized loader
-def load_assets():
 
-    with open('models/movies_list.pkl', 'rb') as f_list, \
-         open('models/similarity.pkl', 'rb') as f_sim:
+def load_engine_assets():
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    """Load serialized movie data and similarity matrix."""
 
-        return pickle.load(f_list), pickle.load(f_sim)
+    try:
+        # Open both files safely
+        with open('models/movies_list.pkl', 'rb') as f_list, \
+             open('models/similarity.pkl', 'rb') as f_sim:
+
+            return pickle.load(f_list), pickle.load(f_sim)
+
+    except FileNotFoundError:
+
+        print("Error: Model files not found.")
+        return None, None
 
 
-# Refactored recommendation function
-def get_recommendations(movie_name, movies_list, sim_matrix):
+def get_recommendations(movie_title, movies_list, similarity_matrix):
+    """
+    Find and display top 5 similar movies.
+    """
 
     try:
         # Find movie index
-        idx = movies_list.index(movie_name)
+        movie_idx=movies_list.index(movie_title)
 
-        # Optimized similarity sorting
-        distances = sorted(
-            list(enumerate(sim_matrix[idx])),
+        # Sort similarity scores
+        similarity_scores = sorted(
+            list(enumerate(similarity_matrix[movie_idx])),
             reverse=True,
             key=lambda x: x[1]
         )[1:6]
 
-        # Clean output
-        print(f"\n--- Recommendations for {movie_name} ---")
+        print(f"\n--- Top Recommendations for {movie_title} ---")
 
-        # Print only titles
-        for i in distances:
+        # Print recommendations
+        for match in similarity_scores:
+            print(f"🎬 {movies_list[match[0]]}")
 
-            # TEMPORARY slowdown test
-            
+    except ValueError:
 
-            print(movies_list[i[0]])
+        print(f"❌ '{movie_title}' not found in database.")
 
-    except Exception:
-        print("Movie not found. Please try again.")
+    except Exception as error:
+
+        print(f"⚠️ Unexpected error: {error}")
 
 
-# Main execution
 if __name__ == "__main__":
 
-    # Load once
-    m_list, s_mat = load_assets()
+    # Load engine assets
+    movies, similarity = load_engine_assets()
 
-    # Test recommendation
-    get_recommendations("Batman Begins", m_list, s_mat)
+    # Run recommendation
+    if movies is not None:
+        get_recommendations(
+            "The Dark Knight Rises",
+            movies,
+            similarity
+        )
