@@ -1,1 +1,5 @@
 Fast Loading Complete in 4.9041 seconds!
+Clean code runtime: 0.6 seconds
+With extra print statements: 2.3 seconds
+
+Difference: 1.7 seconds slower

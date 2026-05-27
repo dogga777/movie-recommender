@@ -1,48 +1,48 @@
 import pickle
-import pandas as pd
 
-# Load assets
+# Optimized loader
 def load_assets():
-    with open('models/movies_list.pkl', 'rb') as f:
-        movies = pickle.load(f)
 
-    with open('models/similarity.pkl', 'rb') as f:
-        sim = pickle.load(f)
+    with open('models/movies_list.pkl', 'rb') as f_list, \
+         open('models/similarity.pkl', 'rb') as f_sim:
 
-    return movies, sim
+        return pickle.load(f_list), pickle.load(f_sim)
 
 
-# Recommendation function
+# Refactored recommendation function
 def get_recommendations(movie_name, movies_list, sim_matrix):
 
-    # Find movie index
-    idx = movies_list.index(movie_name)
+    try:
+        # Find movie index
+        idx = movies_list.index(movie_name)
 
-    # Similarity scores
-    distances = sorted(
-        list(enumerate(sim_matrix[idx])),
-        reverse=True,
-        key=lambda x: x[1]
-    )
+        # Optimized similarity sorting
+        distances = sorted(
+            list(enumerate(sim_matrix[idx])),
+            reverse=True,
+            key=lambda x: x[1]
+        )[1:6]
 
-    top_matches = distances[1:11]
+        # Clean output
+        print(f"\n--- Recommendations for {movie_name} ---")
 
-    print(f"\nSearching for high-match relatives of {movie_name}...\n")
+        # Print only titles
+        for i in distances:
 
-    # LOOP TO DEBUG
-    for match in top_matches:
+            # TEMPORARY slowdown test
+            
 
-        score = match[1]
+            print(movies_list[i[0]])
 
-        # 🔴 SET CONDITIONAL BREAKPOINT HERE
-        movie_title = movies_list[match[0]]
-
-        print(f"Checking: {movie_title} (Score: {score})")
+    except Exception:
+        print("Movie not found. Please try again.")
 
 
 # Main execution
 if __name__ == "__main__":
 
-    m_list, s_matrix = load_assets()
+    # Load once
+    m_list, s_mat = load_assets()
 
-    get_recommendations("Iron Man", m_list, s_matrix)
+    # Test recommendation
+    get_recommendations("Batman Begins", m_list, s_mat)
