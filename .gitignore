@@ -13,3 +13,6 @@ Thumbs.db
 
 # Ignore environment files
 .env
+
+# Ignore pickle model files
+models/*.pkl
