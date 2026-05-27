@@ -74,3 +74,37 @@ movie-recommender/
 ## ✨ Author
 
 Created during the Data Science Internship project.
+  ---
+
+## 🧪 Sample Output
+
+When you search for **"Iron Man"**, the engine returns:
+
+- [x] Iron Man 2
+- [x] Iron Man 3
+- [x] Avengers: Age of Ultron
+- [x] Captain America: Civil War
+- [x] The Avengers
+
+> **Note:** The similarity scores are calculated using movie plots and genres.
+
+---
+
+## 📈 Project Status
+
+| Task | Status |
+| :--- | :--- |
+| Data Cleaning | Completed ✅ |
+| Vectorization | Completed ✅ |
+| Search Logic | Completed ✅ |
+| GitHub Launch | In Progress 🚀 |
+
+---
+
+## 🎥 Favorite Movies Table
+
+| Movie | Genre |
+| :--- | :--- |
+| Interstellar | Sci-Fi |
+| The Dark Knight | Action |
+| Inception | Thriller |
