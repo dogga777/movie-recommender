@@ -1,18 +1,18 @@
-# Ignore Python virtual environment
-.venv/
-
-# Ignore Python cache files
-__pycache__/
-
-# Ignore CSV datasets
+# --- Ignore Data and Models ---
+models/*.pkl
 data/*.csv
 
-# Ignore system files
+# --- Ignore Python Cache ---
+__pycache__/
+*.py[cod]
+venv/
+.env
+
+# --- Ignore System Junk ---
 .DS_Store
 Thumbs.db
 
-# Ignore environment files
-.env
-
-# Ignore pickle model files
-models/*.pkl
+# --- Ignore VS Code Settings ---
+.vscode/
+venv/
+.venv/
