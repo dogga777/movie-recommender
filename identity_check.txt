@@ -1,0 +1,4 @@
+🔍 Checking your local Git identity...
+👤 Current Name: chandra
+📧 Current Email: chandramoulidogga118@gmail.com
+✅ Local identity found. Ready to link to GitHub!
