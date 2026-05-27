@@ -18,29 +18,33 @@ with open('models/similarity.pkl', 'rb') as f:
 # USER INPUT
 # -------------------------------
 
-# Choose a movie
 user_input = "Iron Man"
 
 # -------------------------------
-# FIND THE MOVIE INDEX
+# FIND MOVIE INDEX
 # -------------------------------
 
-# Locate the movie row number
 movie_idx = movies_list[movies_list['title'] == user_input].index[0]
 
 # -------------------------------
 # ACCESS THE SIMILARITY ROW
 # -------------------------------
 
-# Get the row of scores
 similarity_row = similarity_matrix[movie_idx]
+
+# -------------------------------
+# ENUMERATION HACK
+# -------------------------------
+
+# Attach index numbers to scores
+stapled_scores = list(enumerate(similarity_row))
 
 # -------------------------------
 # DISPLAY RESULTS
 # -------------------------------
 
-print(f"✅ Successfully accessed row for: {user_input}")
+print("✅ Enumeration Complete!")
 
-print(f"📊 Total scores in this row: {len(similarity_row)}")
+print("\n--- First 3 Stapled Pairs ---")
 
-print(f"🔢 Sample scores: {similarity_row[:10]}")
+print(stapled_scores[:3])
