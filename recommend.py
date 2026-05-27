@@ -8,41 +8,34 @@ with open('models/movies_list.pkl', 'rb') as f:
 with open('models/similarity.pkl', 'rb') as f:
     similarity_matrix = pickle.load(f)
 
-# USER INPUT
-user_input = "Avatar"
+# RECOMMEND FUNCTION
+def recommend(movie):
 
-# FIND THE MOVIE INDEX
-movie_idx = movies_list[movies_list['title'] == user_input].index[0]
+    try:
+        # FIND MOVIE INDEX
+        index = movies_list[movies_list['title'] == movie].index[0]
 
-# ACCESS THE SIMILARITY ROW
-similarity_row = similarity_matrix[movie_idx]
+        # SORT SIMILARITY SCORES
+        distances = sorted(
+            list(enumerate(similarity_matrix[index])),
+            reverse=True,
+            key=lambda x: x[1]
+        )
 
-# ENUMERATION HACK
-stapled_scores = list(enumerate(similarity_row))
+        # SUCCESS MESSAGE
+        print(f"✅ Success! Showing recommendations for: {movie}")
 
-# SORT THE SCORES (Highest First)
-sorted_matches = sorted(
-    stapled_scores,
-    reverse=True,
-    key=lambda x: x[1]
-)
+    except IndexError:
+        # FRIENDLY ERROR MESSAGE
+        print(f"❓ Sorry! '{movie}' isn't in our 5,000-movie database. Check your spelling!")
 
-# PRINT FIRST 3 RESULTS
-print("🎬 Top 3 Sorted Matches:")
-print(sorted_matches[:3])
+    except Exception as e:
+        # OTHER ERRORS
+        print(f"⚠️ An unexpected error occurred: {e}")
 
-# --- SLICE AUDIT TEST ---
+# TESTING
 
-# Create a list from 100 to 109
-numbers = list(range(100, 110))
+recommend("Avatar")
 
-# Print the full list
-print("Full List:")
-print(numbers)
-
-# Slice the middle 3 numbers
-middle_numbers = numbers[4:7]
-
-# Print the sliced result
-print("\nMiddle 3 Numbers:")
-print(middle_numbers)
+# CHANGE THIS TO YOUR OWN NAME
+recommend("Chandramouli")
