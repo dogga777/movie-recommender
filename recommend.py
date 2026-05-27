@@ -30,3 +30,19 @@ sorted_matches = sorted(
 # PRINT FIRST 3 RESULTS
 print("🎬 Top 3 Sorted Matches:")
 print(sorted_matches[:3])
+
+# --- SLICE AUDIT TEST ---
+
+# Create a list from 100 to 109
+numbers = list(range(100, 110))
+
+# Print the full list
+print("Full List:")
+print(numbers)
+
+# Slice the middle 3 numbers
+middle_numbers = numbers[4:7]
+
+# Print the sliced result
+print("\nMiddle 3 Numbers:")
+print(middle_numbers)
