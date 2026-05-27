@@ -1,0 +1,3 @@
+The Syntax Error made the terminal angry and showed red error text because Python could not understand the code.
+
+The Logic Error did not crash the program, but it gave a weird and incorrect result because the sorting logic or score values were wrong.
