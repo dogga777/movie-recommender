@@ -8,34 +8,37 @@ with open('models/movies_list.pkl', 'rb') as f:
 with open('models/similarity.pkl', 'rb') as f:
     similarity_matrix = pickle.load(f)
 
-# RECOMMEND FUNCTION
+# RECOMMENDATION FUNCTION
 def recommend(movie):
-
     try:
-        # FIND MOVIE INDEX
+        # Find movie index
         index = movies_list[movies_list['title'] == movie].index[0]
 
-        # SORT SIMILARITY SCORES
+        # Get similarity scores
         distances = sorted(
             list(enumerate(similarity_matrix[index])),
             reverse=True,
             key=lambda x: x[1]
         )
 
-        # SUCCESS MESSAGE
-        print(f"✅ Success! Showing recommendations for: {movie}")
+        # Top 5 recommendations
+        top_5 = distances[1:6]
+
+        # Display Results
+        print(f"\n🌟 Because you liked '{movie}', you might also enjoy:")
+        print("-" * 40)
+
+        for i in top_5:
+            recommended_movie_index = i[0]
+
+            movie_title = movies_list.iloc[recommended_movie_index].title
+
+            print(f"🎬 {movie_title}")
+
+        print("-" * 40)
 
     except IndexError:
-        # FRIENDLY ERROR MESSAGE
-        print(f"❓ Sorry! '{movie}' isn't in our 5,000-movie database. Check your spelling!")
+        print(f"❓ Movie '{movie}' not found.")
 
-    except Exception as e:
-        # OTHER ERRORS
-        print(f"⚠️ An unexpected error occurred: {e}")
-
-# TESTING
-
-recommend("Avatar")
-
-# CHANGE THIS TO YOUR OWN NAME
-recommend("Chandramouli")
+# TEST THE ENGINE
+recommend("The Dark Knight Rises")
