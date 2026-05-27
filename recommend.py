@@ -1,49 +1,46 @@
-# Import the pickle library to load our binary brain files
+# Import required libraries
 import pickle
-# Import pandas to handle the movie data table
 import pandas as pd
 
-# Define a function to load our assets
-def load_engine():
+# -------------------------------
+# LOAD THE ENGINE FILES
+# -------------------------------
 
-    print("⏳ Loading the Recommendation Engine...")
+# Load movie list
+with open('models/movies_list.pkl', 'rb') as f:
+    movies_list = pickle.load(f)
 
-    # Load movies list
-    with open('models/movies_list.pkl', 'rb') as f:
-        movies = pickle.load(f)
+# Load similarity matrix
+with open('models/similarity.pkl', 'rb') as f:
+    similarity_matrix = pickle.load(f)
 
-    # Load similarity matrix
-    with open('models/similarity.pkl', 'rb') as f:
-        similarity = pickle.load(f)
+# -------------------------------
+# USER INPUT
+# -------------------------------
 
-    return movies, similarity
+# Choose a movie
+user_input = "Iron Man"
 
+# -------------------------------
+# FIND THE MOVIE INDEX
+# -------------------------------
 
-# Function to find movie index
-def find_movie_index(movie_title, movies_df):
+# Locate the movie row number
+movie_idx = movies_list[movies_list['title'] == user_input].index[0]
 
-    try:
-        index = movies_df[movies_df['title'] == movie_title].index[0]
-        return index
+# -------------------------------
+# ACCESS THE SIMILARITY ROW
+# -------------------------------
 
-    except IndexError:
-        return None
+# Get the row of scores
+similarity_row = similarity_matrix[movie_idx]
 
+# -------------------------------
+# DISPLAY RESULTS
+# -------------------------------
 
-# --- MAIN PROGRAM ---
-if __name__ == "__main__":
+print(f"✅ Successfully accessed row for: {user_input}")
 
-    # Load engine files
-    movies_list, similarity_matrix = load_engine()
+print(f"📊 Total scores in this row: {len(similarity_row)}")
 
-    # Change the movie here
-    target = "Spectre"
-
-    # Find the index
-    idx = find_movie_index(target, movies_list)
-
-    # Show result
-    if idx is not None:
-        print(f"✅ Found it! '{target}' is located at Index: {idx}")
-    else:
-        print(f"❌ Error: '{target}' was not found in our database.")
+print(f"🔢 Sample scores: {similarity_row[:10]}")

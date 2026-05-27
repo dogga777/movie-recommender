@@ -1,0 +1,1 @@
+I accessed the similarity row for Iron Man. The row contains 4806 scores, and I see decimal values that represent how similar other movies are to my choice.
