@@ -1,15 +1,14 @@
-# Import the pickle library to load saved files
+# Import the pickle library to load our binary brain files
 import pickle
-
-# Import pandas
+# Import pandas to handle the movie data table
 import pandas as pd
 
-# Function to load the recommendation engine
+# Define a function to load our assets
 def load_engine():
 
     print("⏳ Loading the Recommendation Engine...")
 
-    # Load movie list
+    # Load movies list
     with open('models/movies_list.pkl', 'rb') as f:
         movies = pickle.load(f)
 
@@ -20,13 +19,31 @@ def load_engine():
     return movies, similarity
 
 
-# Main program
+# Function to find movie index
+def find_movie_index(movie_title, movies_df):
+
+    try:
+        index = movies_df[movies_df['title'] == movie_title].index[0]
+        return index
+
+    except IndexError:
+        return None
+
+
+# --- MAIN PROGRAM ---
 if __name__ == "__main__":
 
+    # Load engine files
     movies_list, similarity_matrix = load_engine()
 
-    print(f"✅ Engine Ready! Loaded {len(movies_list)} movies.")
+    # Change the movie here
+    target = "Spectre"
 
-    print("\n--- Preview of Movie Library ---")
+    # Find the index
+    idx = find_movie_index(target, movies_list)
 
-    print(movies_list['title'].head())
+    # Show result
+    if idx is not None:
+        print(f"✅ Found it! '{target}' is located at Index: {idx}")
+    else:
+        print(f"❌ Error: '{target}' was not found in our database.")
